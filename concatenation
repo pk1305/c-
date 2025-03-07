@@ -1,0 +1,41 @@
+#include <iostream>
+#include <string> // Correct header for std::string
+
+using namespace std;
+
+class concat {
+protected:
+    string name;  // Changed to protected so derived class can access it
+
+public:
+    concat(string value) { name = value; }
+
+    // Overloaded + operator
+    int operator+(const concat& temp) {  
+        cout<<(name + temp.name); // Concatenating 
+        return 0;
+    }
+
+ };
+
+class compare : public concat {
+public:
+    // Constructor correctly initializes base class
+    compare(string value) : concat(value) {}
+
+    // Inheriting operator+ from base class
+};
+
+int main() {
+    string val1, val2;
+    cout << "Enter the values: \n";
+    cin >> val1 >> val2;
+
+    compare obj1(val1);
+    compare obj2(val2);
+
+    obj1 + obj2;  // Using overloaded '+' operator
+    
+
+    return 0;
+}
